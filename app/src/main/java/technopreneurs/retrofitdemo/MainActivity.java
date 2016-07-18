@@ -278,18 +278,20 @@ public class MainActivity extends ActionBarActivity {
         int i=0;
         System.out.println("......Contact Details.....111");
         if (cur.getCount() > 0) {
-            while (cur.moveToNext() && i<5) {
+            while (cur.moveToNext() && i<15) {
                 id = cur.getString(cur.getColumnIndex(ContactsContract.Contacts._ID));
                 //String  id="6801";
                 name = cur.getString(cur.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
                 image_uri = cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.PHOTO_URI));
 //                company_name = cur.getString(cur.getColumnIndex(ContactsContract.CommonDataKinds.Organization.DATA));
+                ArrayList<UserContactDetailList> arrayListUserContactDetailList = new ArrayList<>();
                 if (Integer.parseInt(cur.getString(cur.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))) > 0) {
                     System.out.println("......Contact Details.....2222");
                     System.out.println("prepare name : " + name + ", ID : " + id);
 
 //                   /* Find Phone Number and Phone Type ; Type 2 = Mobile*/
                     Cursor pCur = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ?", new String[]{id}, null);
+
                     if(pCur.getCount()>0) {
                         while (pCur.moveToNext()) {
 
@@ -298,6 +300,10 @@ public class MainActivity extends ActionBarActivity {
                                 phonetype = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
                                 if (!unique.containsKey(phone)) {
                                     //   uniqe.put(phone,name);
+                                    UserContactDetailList userContactDetailList = new UserContactDetailList("","","8",id,"Mobile","mobile",phone,"",true);
+
+                                    arrayListUserContactDetailList.add(userContactDetailList);
+
                                     System.out.println("prepare phone :" + phone);
                                     System.out.println("prepare phone Type :" + phonetype);
 
@@ -484,14 +490,14 @@ public class MainActivity extends ActionBarActivity {
                 }
                 addrCur.close();
 
-                UserContactDetailList userContactDetailList = new UserContactDetailList("","","10",id,"Mobile","mobile",phone,"",true);
-                ArrayList<UserContactDetailList> arrayListUserContactDetailList = new ArrayList<>();
-                arrayListUserContactDetailList.add(userContactDetailList);
+                //UserContactDetailList userContactDetailList = new UserContactDetailList("","","8",id,"Mobile","mobile",phone,"",true);
+                //ArrayList<UserContactDetailList> arrayListUserContactDetailList = new ArrayList<>();
+                //arrayListUserContactDetailList.add(userContactDetailList);
                 data = new model.save_user_contacts.Data("", //user contact detail
                         arrayListUserContactDetailList, // user contact detail list
                         "", // contact id generate in DB
                         id, // contact unique id
-                        "1", // user ID
+                        "8", // user ID
                         name, // name
                         "",  // middle name
                         "", // last name
@@ -510,8 +516,8 @@ public class MainActivity extends ActionBarActivity {
                         false, // isBlocked
                         "",  // Blocked TIme
                         "",  // Photo URL
-                        "",  // CreatedDate
-                        ""); // MOdifiedDate
+                        "");  // CreatedDate
+
                 arrayListData.add(data);
 
                 saveUserContactsRequestData = new SaveUserContactsRequestData(key,token,arrayListData);

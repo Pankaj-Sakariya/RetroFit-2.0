@@ -85,7 +85,7 @@ public class Data {
    private String modifiedDate;
 
 
-   public Data(Object userContactDetail, List<UserContactDetailList> userContactDetailList, String contactID, String contactUniqueID, String userID, String firstName, Object middleName, String lastName, String email, Object company, Object jobTitle, Object address, Object city, Object state, Object country, Object birthDate, Object notes, Boolean isActive, Boolean isFavourite, Boolean isDeleted, Boolean isBlocked, Object blockedTime, Object photoUrl, String createdDate, String modifiedDate) {
+   public Data(Object userContactDetail, List<UserContactDetailList> userContactDetailList, String contactID, String contactUniqueID, String userID, String firstName, Object middleName, String lastName, String email, Object company, Object jobTitle, Object address, Object city, Object state, Object country, Object birthDate, Object notes, Boolean isActive, Boolean isFavourite, Boolean isDeleted, Boolean isBlocked, Object blockedTime, Object photoUrl, String createdDate) {
       this.userContactDetail = userContactDetail;
       this.userContactDetailList = userContactDetailList;
       this.contactID = contactID;
@@ -110,7 +110,7 @@ public class Data {
       this.blockedTime = blockedTime;
       this.photoUrl = photoUrl;
       this.createdDate = createdDate;
-      this.modifiedDate = modifiedDate;
+    //  this.modifiedDate = modifiedDate;
    }
 
    /**
