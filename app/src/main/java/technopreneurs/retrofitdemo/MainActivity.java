@@ -300,7 +300,20 @@ public class MainActivity extends ActionBarActivity {
                                 phonetype = pCur.getString(pCur.getColumnIndex(ContactsContract.CommonDataKinds.Phone.TYPE));
                                 if (!unique.containsKey(phone)) {
                                     //   uniqe.put(phone,name);
-                                    UserContactDetailList userContactDetailList = new UserContactDetailList("","","8",id,"Mobile","mobile",phone,"",true);
+                                    String numbertype=null;
+                                    if(phonetype.equalsIgnoreCase("1"))
+                                    {
+                                        numbertype ="Home" ;
+                                    }
+                                    if(phonetype.equalsIgnoreCase("2"))
+                                    {
+                                        numbertype ="Mobile" ;
+                                    }
+                                    if(phonetype.equalsIgnoreCase("3"))
+                                    {
+                                        numbertype ="Work" ;
+                                    }
+                                    UserContactDetailList userContactDetailList = new UserContactDetailList("","","8",id,"Mobile",numbertype,phone,"",true);
 
                                     arrayListUserContactDetailList.add(userContactDetailList);
 
